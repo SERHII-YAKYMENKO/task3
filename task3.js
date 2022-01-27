@@ -16,7 +16,7 @@ function fillArray(item, rule) {
         }
       } else {
         for (let i = 0; i < diff; i++) {
-          item = item.concat(" ");
+          item = item.concat(` `);
         }
       }
     }
@@ -26,8 +26,10 @@ function fillArray(item, rule) {
 
 function transform(data, rules) {
   const convertedToString = data.map((item) => item.join(" "));
+  const starLine = "*".repeat(18);
 
   const result = [];
+  result[0] = starLine;
 
   for (let j = 0; j < convertedToString.length; j++) {
     let item = convertedToString[j];
@@ -41,14 +43,16 @@ function transform(data, rules) {
       item = fillArray(item, currentRule);
     }
 
-    result.push(item);
+    result.push(`*${item}*`);
 
     if (leftItem) {
       leftItem = fillArray(leftItem, currentRule);
-      result.push(leftItem);
+      result.push(`*${leftItem}*`);
     }
   }
 
+  result.push(starLine);
+  
   return result;
 }
 
